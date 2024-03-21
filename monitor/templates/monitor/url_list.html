@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h2>Monitored URLs</h2>
+        <p>Below is a list of URLs being monitored along with their status.</p>
+    </div>
+    <div class="mb-4">
+        <a href="{% url 'add_url' %}" class="btn btn-lg btn-success">Add New URL</a>
+    </div>
+    <div class="row">
+        {% for url in urls %}
+        <div class="col-md-12">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div class="me-2">
+                            <h5 class="card-title">{{ url.url }}</h5>
+                            <p class="card-text">Last checked: {{ url.last_checked }}</p>
+                        </div>
+                        <div class="status-circle {{ url.status|yesno:'up,down' }}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-md-12">
+            <div class="alert alert-info">No URLs are currently being monitored.</div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+

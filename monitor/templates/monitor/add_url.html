@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title text-center mb-4 mt-1">Add URL</h4>
+                    <form method="post" class="justify-content-center">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="url">Enter URL to monitor:</label>
+                            {{ form.url }}
+                        </div>
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-success btn-lg">Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
